@@ -1,0 +1,36 @@
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+
+
+/*　今日の背景 */
+.fc .fc-daygrid-day.fc-day-today {
+  background: none;
+}
+.fc .fc-daygrid-day.fc-day-today .fc-daygrid-day-frame {
+  background: rgba(55, 196, 172, 0.1);
+}
+/* 日付を枠の高さいっぱいに */
+.fc .fc-daygrid-day-frame {
+  height: 100%;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+#calendar {
+  max-width: 1100px;
+  margin: 40px auto;
+}
+
+.fc-today {
+  background: transparent !important; /* hack. because demo will always start out on current day */
+}
