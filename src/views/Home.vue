@@ -1,10 +1,15 @@
 <script>
 import FullCalendar from '@fullcalendar/vue'
-import dayGridPlugin, { DayGridView } from '@fullcalendar/daygrid'
+import dayGridPlugin
+//, { DayGridView } 
+from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
-import { INITIAL_EVENTS, createEventId } from './event-utils'
- import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid'
+import { INITIAL_EVENTS
+// , createEventId 
+} from './event-utils'
+// import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid'
+
 
 export default {
 
@@ -74,22 +79,22 @@ export default {
       this.calendarOptions.weekends = !this.calendarOptions.weekends // update a property
     },
 
-    handleDateClick(clickInfo) {
-      clickInfo.data-navlink()
+    // handleDateClick(clickInfo) {
+    //   clickInfo.data-navlink()
       
-      calendarApi.unselect() // clear date selection
+      // calendarApi.unselect() // clear date selection
 
-      if (title) {
-        calendarApi.addEvent({
-          id: createEventId(),
-          title,
-          start: selectInfo.startStr,
-          end: selectInfo.endStr,
-          allDay: selectInfo.allDay
-        })
+      // if (title) {
+      //   calendarApi.addEvent({
+      //     id: createEventId(),
+      //     title,
+      //     start: selectInfo.startStr,
+      //     end: selectInfo.endStr,
+      //     allDay: selectInfo.allDay
+      //   })
         
-      }
-    },
+      // }
+    // },
 
     handleEventClick(clickInfo) {
       if (confirm(`予約を消しますか？ '${clickInfo.event.title}'`)) {
@@ -113,27 +118,7 @@ export default {
 
 <template>
   <div class='demo-app'>
-    <div class='demo-app-sidebar'>
-      <div class='demo-app-sidebar-section'>
-        <h2>Instructions</h2>
-        <ul>
-          <li>Select dates and you will be prompted to create a new event</li>
-          <li>Drag, drop, and resize events</li>
-          <li>Click an event to delete it</li>
-        </ul>
-      </div>
-      <div class='demo-app-sidebar-section'>
-        <label>
-          <input
-            type='checkbox'
-            :checked='calendarOptions.weekends'
-            @change='handleWeekendsToggle'
-          />
-          toggle weekends
-        </label>
-      </div>
-     
-    </div>
+    
     <div class='demo-app-main'>
       <FullCalendar
         class='demo-app-calendar'

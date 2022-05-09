@@ -26,15 +26,27 @@
       </div>
 
       <v-spacer></v-spacer>
-
       <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        href=" http://localhost:8084/patient"
         target="_blank"
         text
+        outlined
+      color="white"
       >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
+        <span class="mr-2">登録</span>
+        
       </v-btn>
+      <v-btn
+        href=" http://localhost:8084/about"
+        target="_blank"
+        text
+        outlined
+      color="white"
+      >
+        <span class="mr-2">検索</span>
+        
+      </v-btn>
+      
     </v-app-bar>
 
     <v-main>
@@ -53,3 +65,10 @@ export default {
   }),
 };
 </script>
+
+<style>
+.v-btn {
+margin: 1%;
+
+}
+</style>
