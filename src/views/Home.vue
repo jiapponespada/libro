@@ -1,10 +1,9 @@
 <script>
 import FullCalendar from '@fullcalendar/vue'
-import dayGridPlugin, { DayGridView } from '@fullcalendar/daygrid'
+import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
-import { INITIAL_EVENTS, createEventId } from './event-utils'
- import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid'
+import { INITIAL_EVENTS } from './event-utils'
 
 export default {
 
@@ -48,8 +47,8 @@ export default {
         slotMinTime: '08:00:00',
         slotMaxTime: '19:00:00',
         hiddenDays: [ 0, 4 ],
-        
-        
+
+
   },
   timeGridDay: {
     slotMinTime: '08:00:00',
@@ -72,23 +71,6 @@ export default {
 
     handleWeekendsToggle() {
       this.calendarOptions.weekends = !this.calendarOptions.weekends // update a property
-    },
-
-    handleDateClick(clickInfo) {
-      clickInfo.data-navlink()
-      
-      calendarApi.unselect() // clear date selection
-
-      if (title) {
-        calendarApi.addEvent({
-          id: createEventId(),
-          title,
-          start: selectInfo.startStr,
-          end: selectInfo.endStr,
-          allDay: selectInfo.allDay
-        })
-        
-      }
     },
 
     handleEventClick(clickInfo) {
@@ -132,7 +114,7 @@ export default {
           toggle weekends
         </label>
       </div>
-     
+
     </div>
     <div class='demo-app-main'>
       <FullCalendar
