@@ -64,6 +64,7 @@
           :category-days="categoryDays"
           @change="getEvents"
           @click:time="addEvents"
+          :first-time="480"        
       ></v-calendar>
     </v-sheet>
   </div>
@@ -76,29 +77,27 @@ export default {
   components: {Header},
   data: () => ({
     type: 'month',
-    types: ['month', 'week', 'day', '4day', 'category'],
+    types: ['month', 'week', 'category'],
     mode: 'stack',
     modes: ['stack', 'column'],
-    weekday: [0, 1, 2, 3, 4, 5, 6],
+    weekday: [ 1, 2, 3,  5, 6],
     weekdays: [
-      { text: 'Sun - Sat', value: [0, 1, 2, 3, 4, 5, 6] },
-      { text: 'Mon - Sun', value: [1, 2, 3, 4, 5, 6, 0] },
-      { text: 'Mon - Fri', value: [1, 2, 3, 4, 5] },
-      { text: 'Mon, Wed, Fri', value: [1, 3, 5] },
+      { text: 'Sun - Sat', value: [ 1, 2, 3,  5, 6] },
+      
     ],
     value: '',
     events: [],
     colors: ['blue', 'indigo', 'deep-purple', 'cyan', 'green', 'orange', 'grey darken-1'],
     names: ['Meeting', 'Holiday', 'PTO', 'Travel', 'Event', 'Birthday', 'Conference', 'Party'],
-    categories: ['John Smith', 'Tori Walker'],
-    categoryDays: 4
+    categories: ['1', '2','3','4','5','6','訪問'],
+    categoryDays: 1
   }),
   methods: {
     getEvents ({ start, end }) {
       const events = []
 
-      const min = new Date(`${start.date}T00:00:00`)
-      const max = new Date(`${end.date}T23:59:59`)
+      const min = new Date(`${start.date}T08:00:00`)
+      const max = new Date(`${end.date}T18:59:59`)
       const days = (max.getTime() - min.getTime()) / 86400000
       const eventCount = this.rnd(days, days + 20)
 
