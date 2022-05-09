@@ -1,19 +1,19 @@
 
 <template>
-<v-data-table
+<!-- <v-data-table
       :headers="headers"
       :items="desserts"
       item-key="name"
       class="elevation-1"
       :search="search"
       :custom-filter="filterOnlyCapsText"
-    >
-      <template v-slot:top>
+    > -->
+      <!-- <template v-slot:top>
         <v-text-field
           v-model="search"
           label="Search (UPPER CASE ONLY)"
-          class="mx-4"
-        ></v-text-field>
+          class="mx-4" -->
+        <!-- ></v-text-field> -->
   <v-data-table
     :headers="headers"
     :items="desserts"

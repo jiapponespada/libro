@@ -27,7 +27,7 @@
 
       <v-spacer></v-spacer>
       <v-btn
-        href=" http://localhost:8084/patient"
+        href=" http://localhost:8086/patient"
         target="_blank"
         text
         outlined
@@ -37,7 +37,7 @@
         
       </v-btn>
       <v-btn
-        href=" http://localhost:8084/about"
+        href=" http://localhost:8086/about"
         target="_blank"
         text
         outlined
