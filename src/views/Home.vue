@@ -110,6 +110,17 @@ export default {
     e.dayNumberText = e.dayNumberText.replace('日', '');
 },
 };
+document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
+
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'timeGridDay',
+    nowIndicator: true,
+    now: '2018-02-13T09:25:00' // just for demo
+  });
+
+  calendar.render();
+});
 
 
 
@@ -208,5 +219,16 @@ td.fc-day-thu {
 }
 td.fc-day-sun {
   background-color: #ffeaea;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+#calendar {
+  max-width: 1100px;
+  margin: 40px auto;
 }
 </style>

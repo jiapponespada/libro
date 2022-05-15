@@ -22,22 +22,12 @@
           <v-text-field
             v-model="firstname"
             :rules="nameRules"
-            label="苗字"
-            required
-          ></v-text-field>
-        </v-col>
-
-        <v-col
-          cols="12"
-          md="2"
-        >
-          <v-text-field
-            v-model="lastname"
-            :rules="nameRules"
             label="名前"
             required
           ></v-text-field>
         </v-col>
+
+      
       <v-btn
       class="mr-2"
       outlined
@@ -67,5 +57,6 @@
 margin-bottom: 5px;
 margin-left: 6.36719px;
 margin-right: 8px;
-margin-top: 50px;
+margin-top: 100px;
+padding: 5,0,0,0;
 }
