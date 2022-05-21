@@ -9,7 +9,9 @@ import { INITIAL_EVENTS
 // , createEventId 
 } from './event-utils'
 // import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid'
-
+import { collection, addDoc } from "firebase/firestore"
+import { getFirestore } from "firebase/firestore"
+import app from "../firebase"
 
 export default {
 
@@ -95,8 +97,24 @@ export default {
         
       // }
     // },
+    addEvent:async()=>{
+      
+const db = getFirestore(app);
 
-    handleEventClick(clickInfo) {
+
+try {
+  const docRef = await addDoc(collection(db, "users"), {
+    first: "Ada",
+    last: "Lovelace",
+    born: 1815
+  });
+  console.log("Document written with ID: ", docRef.id);
+} catch (e) {
+  console.error("Error adding document: ", e);
+}
+    },
+    
+        handleEventClick(clickInfo) {
       if (confirm(`予約を消しますか？ '${clickInfo.event.title}'`)) {
         clickInfo.event.remove()
       }

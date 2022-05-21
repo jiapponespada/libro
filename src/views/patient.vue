@@ -31,12 +31,30 @@
             >
               新規登録
             </v-btn>
+            
           </template>
           <v-card>
             <v-card-title>
               <span class="text-h5">{{ formTitle }}</span>
             </v-card-title>
-
+ <v-card>
+    <v-card-title>
+      Nutrition
+      <v-spacer></v-spacer>
+      <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Search"
+        single-line
+        hide-details
+      ></v-text-field>
+    </v-card-title>
+    <v-data-table
+      :headers="headers"
+      :items="desserts"
+      :search="search"
+    ></v-data-table>
+  </v-card>
             <v-card-text>
               <v-container>
                 <v-row>
