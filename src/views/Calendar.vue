@@ -68,6 +68,7 @@
           @click:more="viewDay"
           @click:date="viewDay"
           category-show-all
+          category-hide-dynamic
       ></v-calendar>
     </v-sheet>
   </div>
