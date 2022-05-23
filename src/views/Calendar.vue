@@ -67,8 +67,7 @@
           @click:event="showEvent"
           @click:more="viewDay"
           @click:date="viewDay"
-          :category-show-all="false"
-          :category-hide-dynamic="false"
+          category-show-all
       ></v-calendar>
     </v-sheet>
   </div>
@@ -100,7 +99,9 @@ export default {
     
     
   }),
-  
+   mounted () {
+      this.$refs.calendar.checkChange()
+    },
   methods: {
     getEvents ({ start, end }) {
       const events = []
