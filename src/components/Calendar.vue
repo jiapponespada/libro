@@ -24,15 +24,6 @@
           label="type"
       ></v-select>
       <v-select
-          v-model="mode"
-          :items="modes"
-          dense
-          outlined
-          hide-details
-          label="event-overlap-mode"
-          class="ma-2"
-      ></v-select>
-      <v-select
           v-model="weekday"
           :items="weekdays"
           dense
@@ -41,6 +32,14 @@
           label="weekdays"
           class="ma-2"
       ></v-select>
+         <v-btn
+            outlined
+            class="mr-4"
+            color="grey darken-2"
+            @click="setToday"
+          >
+            Today
+            </v-btn>
       <v-spacer></v-spacer>
       <v-btn
           icon
@@ -64,7 +63,12 @@
           :category-days="categoryDays"
           @change="getEvents"
           @click:time="addEvents"
-          :first-time="480"        
+          :first-time="480"     
+          @click:event="showEvent"
+          @click:more="viewDay"
+          @click:date="viewDay"
+         
+             
       ></v-calendar>
     </v-sheet>
   </div>
@@ -85,13 +89,16 @@ export default {
       { text: 'Sun - Sat', value: [ 1, 2, 3,  5, 6] },
       
     ],
+    
+    focus: '',
     value: '',
     events: [],
     colors: ['blue', 'indigo', 'deep-purple', 'cyan', 'green', 'orange', 'grey darken-1'],
     names: ['Meeting', 'Holiday', 'PTO', 'Travel', 'Event', 'Birthday', 'Conference', 'Party'],
-    categories: ['1', '2','3','4','5','6','訪問'],
+    categories: ['1','2','3','4','5','6','訪問'],
     categoryDays: 1
   }),
+  
   methods: {
     getEvents ({ start, end }) {
       const events = []
@@ -133,6 +140,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style >
+.v-calendar-category .v-calendar-category__columns .v-calendar-category__column{
+width: 100px;
+}
 </style>
