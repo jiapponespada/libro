@@ -128,6 +128,7 @@ try {
     e.dayNumberText = e.dayNumberText.replace('日', '');
 },
 };
+
 document.addEventListener('DOMContentLoaded', function() {
   var calendarEl = document.getElementById('calendar');
 
@@ -135,6 +136,27 @@ document.addEventListener('DOMContentLoaded', function() {
     initialView: 'timeGridDay',
     nowIndicator: true,
     now: '2018-02-13T09:25:00' // just for demo
+  });
+
+  calendar.render();
+  
+});
+document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
+
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    selectable: true,
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    },
+    dateClick: function(info) {
+      alert('clicked ' + info.dateStr);
+    },
+    select: function(info) {
+      alert('selected ' + info.startStr + ' to ' + info.endStr);
+    }
   });
 
   calendar.render();
