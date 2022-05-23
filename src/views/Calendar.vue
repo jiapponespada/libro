@@ -98,6 +98,7 @@ export default {
     categories: ['1','2','3','4','5','6','訪問'],
     categoryDays: 1
     
+    
   }),
   
   methods: {
