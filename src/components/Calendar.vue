@@ -1,4 +1,5 @@
 <template>
+
   <v-app>
     <Header/>
   <div style="padding-top: 64px">
@@ -73,6 +74,7 @@
     </v-sheet>
   </div>
   </v-app>
+  
 </template>
 
 <script>
@@ -98,10 +100,23 @@ export default {
     categories: ['1','2','3','4','5','6','訪問'],
     categoryDays: 1
   }),
-  
+  mounted () {
+      this.$refs.calendar.checkChange()
+    },
   methods: {
-    getEvents ({ start, end }) {
-      const events = []
+    setToday () {
+        this.focus = ''
+      },
+     prev () {
+        this.$refs.calendar.prev()
+      },
+      next () {
+        this.$refs.calendar.next()
+      },
+      fetchEvents ({ start, end }) {
+        const events = []
+        
+   
 
       const min = new Date(`${start.date}T08:00:00`)
       const max = new Date(`${end.date}T18:59:59`)
@@ -138,10 +153,30 @@ export default {
     }
   },
 }
+
 </script>
 
 <style >
 .v-calendar-category .v-calendar-category__columns .v-calendar-category__column{
 width: 100px;
+}
+.v-current-time {
+  height: 2px;
+  background-color: #ea4335;
+  position: absolute;
+  left: -1px;
+  right: 0;
+  pointer-events: none;
+
+  &.first::before {
+    content: '';
+    position: absolute;
+    background-color: #ea4335;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-top: -5px;
+    margin-left: -6.5px;
+  }
 }
 </style>
