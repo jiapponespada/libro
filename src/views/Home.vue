@@ -12,6 +12,7 @@ import { INITIAL_EVENTS
 import { collection, addDoc } from "firebase/firestore"
 import { getFirestore } from "firebase/firestore"
 import app from "../firebase"
+import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
 
 export default {
 
@@ -25,19 +26,27 @@ export default {
         plugins: [
           dayGridPlugin,
           timeGridPlugin,
-          interactionPlugin // needed for dateClick
+          interactionPlugin,
+          resourceTimeGridPlugin, 
+  // needed for dateClick
         ],
         headerToolbar: {
           left: 'prev,next today',
           center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay'
+          right: 'dayGridMonth,timeGridWeek,resourceTimeGridDay'
         },
         locale: "ja",
         dayCellContent: function (e) {
         e.dayNumberText = e.dayNumberText.replace("日", "");
         },
         navLinks:true,
-        initialView: 'dayGridMonth',
+        initialView: 'resourceTimeGridDay',
+         resources: [
+      { id: 'a', title: 'Room A' },
+      { id: 'b', title: 'Room B'},
+      { id: 'c', title: 'Room C' },
+      { id: 'd', title: 'Room D' }
+    ],
         initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
         editable: true,
         selectable: true,
