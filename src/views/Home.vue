@@ -14,6 +14,7 @@ import { getFirestore } from "firebase/firestore"
 import app from "../firebase"
 import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
 
+
 export default {
 
   components: {
@@ -42,10 +43,13 @@ export default {
         navLinks:true,
         initialView: 'resourceTimeGridDay',
          resources: [
-      { id: 'a', title: 'Room A' },
-      { id: 'b', title: 'Room B'},
-      { id: 'c', title: 'Room C' },
-      { id: 'd', title: 'Room D' }
+      { id: 'a', title: '1' },
+      { id: 'b', title: '2'},
+      { id: 'c', title: '3' },
+      { id: 'd', title: '4' },
+      { id: 'e', title: '5' },
+      { id: 'f', title: '6' },
+      { id: 'g', title: '訪問' },
     ],
         initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
         editable: true,
@@ -67,7 +71,7 @@ export default {
         
         
   },
-  timeGridDay: {
+   resourceTimeGridDay: {
     slotMinTime: '08:00:00',
     slotMaxTime: '19:00:00',
     Boolean, default: false
