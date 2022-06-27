@@ -11,7 +11,18 @@ export const INITIAL_EVENTS = [
   {
     id: createEventId(),
     title: 'Timed event',
-    start: todayStr + 'T:00:00'
+  description: '詳細説明',
+  start: todayStr + 'T17:00:00',
+  end: todayStr + 'T17:30:00',
+  resourceId: 'a'
+  },
+  {
+    id: createEventId(),
+    title: 'Timed event',
+  description: '詳細説明',
+  start: todayStr + 'T17:00:00',
+  end: todayStr + 'T17:30:00',
+  resourceId: 'b'
   }
 ]
 

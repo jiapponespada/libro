@@ -5,15 +5,13 @@ import dayGridPlugin
 from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
-import { INITIAL_EVENTS
-// , createEventId 
-} from './event-utils'
+
 // import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid'
-import { collection, addDoc } from "firebase/firestore"
+import { collection,getDocs,setDoc,doc } from "firebase/firestore"
 import { getFirestore } from "firebase/firestore"
 import app from "../firebase"
-import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
-
+import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid'
+import {createEventId} from './event-utils';
 
 export default {
 
@@ -51,7 +49,7 @@ export default {
       { id: 'f', title: '6' },
       { id: 'g', title: '訪問' },
     ],
-        initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
+        initialEvents: [], // alternatively, use the `events` setting to fetch from a feed
         editable: true,
         selectable: true,
         selectMirror: true,
@@ -75,7 +73,14 @@ export default {
     slotMinTime: '08:00:00',
     slotMaxTime: '19:00:00',
     Boolean, default: false
+    
   }
+},
+titleFormat: {
+  month: 'long',
+  year: 'numeric',
+  day: 'numeric',
+  weekday: 'short'
 },
         /* you can update a remote database when these fire:
         eventAdd:
@@ -110,26 +115,24 @@ export default {
         
       // }
     // },
-    addEvent:async()=>{
-      
-const db = getFirestore(app);
-
-
-try {
-  const docRef = await addDoc(collection(db, "users"), {
-    first: "Ada",
-    last: "Lovelace",
-    born: 1815
-  });
-  console.log("Document written with ID: ", docRef.id);
-} catch (e) {
-  console.error("Error adding document: ", e);
-}
+    handleDateSelect(event){
+      console.log(event)
+      const db = getFirestore(app);
+      setDoc(doc(db, 'posts',createEventId()), {
+        title:'mente',
+        start:event.startStr,
+        end:event.endStr
+});
     },
+
     
-        handleEventClick(clickInfo) {
-      if (confirm(`予約を消しますか？ '${clickInfo.event.title}'`)) {
-        clickInfo.event.remove()
+       handleEventClick(clickInfo) {
+  console.log(clickInfo.event.extendedProps)
+  this.show()
+  if (confirm(`予約を消しますか？ '${clickInfo.event.extendedProps.description}'`)) {
+    clickInfo.event.remove()
+  
+
       }
     },
 
@@ -137,43 +140,22 @@ try {
       this.currentEvents = events
     }
   },
+  created: async function(){
+ const db = getFirestore(app);
+ const querySnapshot = await getDocs(collection(db, "plans"));
+ querySnapshot.forEach((doc) => {
+ this.currentEvents.push({ id: doc.id, ...doc.data() });
+ });
+ console.log(this.calendarOptions)
+},
     dayCellContent: function(e) {
     e.dayNumberText = e.dayNumberText.replace('日', '');
 },
 };
 
-document.addEventListener('DOMContentLoaded', function() {
-  var calendarEl = document.getElementById('calendar');
 
-  var calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'timeGridDay',
-    nowIndicator: true,
-    now: '2018-02-13T09:25:00' // just for demo
-  });
 
-  calendar.render();
-  
-});
-document.addEventListener('DOMContentLoaded', function() {
-  var calendarEl = document.getElementById('calendar');
 
-  var calendar = new FullCalendar.Calendar(calendarEl, {
-    selectable: true,
-    headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'dayGridMonth,timeGridWeek,timeGridDay'
-    },
-    dateClick: function(info) {
-      alert('clicked ' + info.dateStr);
-    },
-    select: function(info) {
-      alert('selected ' + info.startStr + ' to ' + info.endStr);
-    }
-  });
-
-  calendar.render();
-});
 
 
 
